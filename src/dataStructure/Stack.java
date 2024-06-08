@@ -69,18 +69,4 @@ public class Stack {
         }
     }
 
-    public static void main(String[] args) {
-        Stack pilha =  new Stack("elm1");
-        pilha.push("elm2");
-        pilha.push("elm3");
-        pilha.print();
-        pilha.pop();
-        pilha.pop();
-        pilha.pop();
-        pilha.print();
-        pilha.push("elm4");
-        pilha.push("elm5");
-        pilha.print();
-
-    }
 }
