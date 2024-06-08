@@ -36,6 +36,9 @@ public class Stack {
 
     public void print() {
         System.out.println("###################################");
+        if (this.top == null) {
+            System.err.println("Stack is empty");
+        }
         Node temp = this.top;
         while (temp != null) {
             System.out.println(temp.value);
@@ -56,16 +59,28 @@ public class Stack {
         }
     }
 
+    public void pop() {
+        if (this.top == null) {
+            System.err.println("Stack is empty");
+        } else {
+            String val = this.top.value;
+            this.top = this.top.next;
+            System.out.println("Popped: " + val);
+        }
+    }
+
     public static void main(String[] args) {
         Stack pilha =  new Stack("elm1");
-        pilha.getTop();
-        pilha.getHeight();
-        pilha.print();
         pilha.push("elm2");
-        pilha.getTop();
-        pilha.print();
         pilha.push("elm3");
         pilha.print();
-        pilha.getTop();
+        pilha.pop();
+        pilha.pop();
+        pilha.pop();
+        pilha.print();
+        pilha.push("elm4");
+        pilha.push("elm5");
+        pilha.print();
+
     }
 }
