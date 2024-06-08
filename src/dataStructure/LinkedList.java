@@ -4,7 +4,7 @@ public class LinkedList {
 
     private Node head;
     private Node tail;
-    private int lenght;
+    private int length;
 
 
     static class Node {
@@ -20,7 +20,7 @@ public class LinkedList {
         Node newNode = new Node(data);
         this.head = newNode;
         this.tail = newNode;
-        this.lenght = 1;
+        this.length = 1;
     }
 
     public String getHead() {
@@ -35,20 +35,20 @@ public class LinkedList {
         }
         return tail.data;
     }
-    public int getLenght() {
-        return lenght;
+    public int getLength() {
+        return length;
     }
 
     public void makeEmpty() {
         this.head = null;
         this.tail = null;
-        this.lenght = 0;
+        this.length = 0;
     }
 
     public void print() {
         System.out.println("######################################");
         if (head == null) {
-            System.out.println("List is empty");
+            System.err.println("List is empty");
         }
         Node currentNode = this.head;
         while (currentNode != null) {
@@ -59,7 +59,7 @@ public class LinkedList {
 
     public void append (String data) {
         Node newNode = new Node(data);
-        if (this.lenght == 0) {
+        if (this.length == 0) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -67,64 +67,64 @@ public class LinkedList {
             this.tail = newNode;
             this.tail.next = null;
         }
-        this.lenght++;
+        this.length++;
     }
 
     public void removeLast(){
-        if (this.lenght == 1) {
+        if (this.length == 1) {
             this.head = null;
             this.tail = null;
-            this.lenght = 0;
+            this.length = 0;
         }
-        else if (this.lenght > 1) {
+        else if (this.length > 1) {
             Node temp = this.head;
             int i = 1;
-            while (i < this.lenght - 1) {
+            while (i < this.length - 1) {
                 temp = temp.next;
                 i++;
             }
             this.tail = temp;
             this.tail.next = null;
-            this.lenght--;
+            this.length--;
         }
         else {
-            System.out.println("List is empty");
+            System.err.println("List is empty");
         }
     }
 
     public void prepend(String data) {
         Node newNode = new Node(data);
-        if (this.lenght == 0) {
+        if (this.length == 0) {
             this.head = newNode;
             this.tail = newNode;
         } else {
             newNode.next = this.head;
             this.head = newNode;
         }
-        this.lenght++;
+        this.length++;
     }
 
     public void removeFirst() {
-        if (this.lenght == 0) {
-            System.out.println("List is empty");
+        if (this.length == 0) {
+            System.err.println("List is empty");
         }
-        else if (this.lenght == 1) {
+        else if (this.length == 1) {
             this.head = null;
             this.tail = null;
-            this.lenght = 0;
+            this.length = 0;
         }else {
             this.head = this.head.next;
-            this.lenght--;
+            this.length--;
         }
     }
 
-    public Node getNode(int idx){
-        if (this.lenght == 0) {
-            System.out.println("List is empty");
+    private Node getNode(int idx){
+        if (this.length == 0) {
+            System.err.println("List is empty");
             return null;
         }
-        if (idx > this.lenght) {
-            System.out.println("Index out of bounds");
+        if (idx > this.length || idx < 0) {
+            System.err.println("Index out of bounds");
             return null;
         }
         Node temp = this.head;
@@ -144,24 +144,48 @@ public class LinkedList {
     }
     public void update(int idx, String data) {
         Node temp = getNode(idx);
-        temp.data = data;
+        if (temp != null) {
+            temp.data = data;
+        }
     }
+
+    public void add(int idx, String data) {
+        Node newNode = new Node(data);
+        Node temp;
+        if (idx == 1) {
+            temp = this.head;
+            Node next = this.head;
+            this.head = newNode;
+            newNode.next = next;
+        } else {
+            temp = getNode(idx-1);
+            if (temp != null) {
+                Node next = temp.next;
+                temp.next = newNode;
+                if (next != null) {
+                    newNode.next = next;
+                } else {
+                    this.tail = newNode;
+                }
+            }
+        }
+    }
+
+
 
 
 
 
     public static void main(String[] args) {
         LinkedList test = new LinkedList("primeiro");
+        test.append("segundo");
         test.append("terceiro");
         test.append("quarto");
-        test.append("quinto");
         test.prepend("Zero");
         test.print();
-        test.get(10);
-        test.get(2);
-        test.update(2, "10000");
-        test.get(2);
+        test.update(5, "Ultimo");
         test.print();
-        System.out.println(test.getLenght());
+        test.add(10, "adicionando 1");
+        test.print();
     }
 }
