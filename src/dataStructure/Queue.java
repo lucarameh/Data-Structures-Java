@@ -66,13 +66,39 @@ public class Queue {
         this.size++;
     }
 
+    public void dequeue() {
+        if(this.size == 0){
+            System.out.println("Queue is empty");
+        } else if (this.size == 1){
+            System.out.println("dequeue: " + this.first.data);
+            this.first = null;
+            this.last = null;
+            this.size--;
+        } else {
+            System.out.println("dequeue: " + this.first.data);
+            this.first = this.first.next;
+            this.size--;
+        }
+    }
+
     public static void main(String[] args) {
         Queue queue = new Queue("elemento1");
         queue.enqueue("elemento2");
         queue.enqueue("elemento3");
-        queue.getFirst();
-        queue.getLast();
-        queue.getSize();
+        queue.enqueue("elemento4");
         queue.print();
+        queue.dequeue();
+        queue.dequeue();
+        queue.print();
+        queue.enqueue("elemento5");
+        queue.enqueue("elemento6");
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.print();
+        queue.enqueue("elemento7");
+        queue.print();
+
     }
 }
