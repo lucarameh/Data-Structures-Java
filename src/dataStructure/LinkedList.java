@@ -66,7 +66,7 @@ public class LinkedList {
             this.tail = newNode;
             this.tail.next = null;
         }
-        this.lenght += 1;
+        this.lenght++;
     }
 
     public void removeLast(){
@@ -90,6 +90,19 @@ public class LinkedList {
             System.out.println("List is empty");
         }
     }
+
+    public void prepend(String data) {
+        Node newNode = new Node(data);
+        if (this.lenght == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.lenght++;
+    }
+
 
 
 
