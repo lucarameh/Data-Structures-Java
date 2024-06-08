@@ -116,22 +116,51 @@ public class LinkedList {
             this.head = this.head.next;
             this.lenght--;
         }
+    }
 
+    public Node getNode(int idx){
+        if (this.lenght == 0) {
+            System.out.println("List is empty");
+            return null;
+        }
+        if (idx > this.lenght) {
+            System.out.println("Index out of bounds");
+            return null;
+        }
+        Node temp = this.head;
+        int i = 1;
+        while (i < idx) {
+            temp = temp.next;
+            i++;
+        }
+        return temp;
+    }
+    public void get(int idx) {
+        Node temp = getNode(idx);
+        if (temp != null) {
+            System.out.println(temp.data);
+        }
+
+    }
+    public void update(int idx, String data) {
+        Node temp = getNode(idx);
+        temp.data = data;
     }
 
 
 
 
     public static void main(String[] args) {
-        LinkedList test = new LinkedList("Test");
-        test.append("Olá");
-        test.append("Ultimo");
+        LinkedList test = new LinkedList("primeiro");
+        test.append("terceiro");
+        test.append("quarto");
+        test.append("quinto");
+        test.prepend("Zero");
         test.print();
-        test.prepend("Primeiro");
-        test.print();
-        test.removeLast();
-        test.print();
-        test.removeFirst();
+        test.get(10);
+        test.get(2);
+        test.update(2, "10000");
+        test.get(2);
         test.print();
         System.out.println(test.getLenght());
     }
