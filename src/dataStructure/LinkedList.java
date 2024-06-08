@@ -151,14 +151,13 @@ public class LinkedList {
 
     public void add(int idx, String data) {
         Node newNode = new Node(data);
-        Node temp;
         if (idx == 1) {
-            temp = this.head;
             Node next = this.head;
             this.head = newNode;
             newNode.next = next;
+            this.length++;
         } else {
-            temp = getNode(idx-1);
+            Node temp = getNode(idx-1);
             if (temp != null) {
                 Node next = temp.next;
                 temp.next = newNode;
@@ -167,25 +166,24 @@ public class LinkedList {
                 } else {
                     this.tail = newNode;
                 }
+                this.length++;
             }
         }
     }
 
-
-
-
-
-
-    public static void main(String[] args) {
-        LinkedList test = new LinkedList("primeiro");
-        test.append("segundo");
-        test.append("terceiro");
-        test.append("quarto");
-        test.prepend("Zero");
-        test.print();
-        test.update(5, "Ultimo");
-        test.print();
-        test.add(10, "adicionando 1");
-        test.print();
+    public void remove(int idx) {
+         if (idx == 1) {
+             removeFirst();
+         }
+         else if (idx == this.length) {
+             removeLast();
+         }
+         else {
+             Node temp = getNode(idx - 1);
+             if (temp != null) {
+                 temp.next = temp.next.next;
+                 this.length--;
+             }
+         }
     }
 }
