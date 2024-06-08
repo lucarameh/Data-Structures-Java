@@ -46,6 +46,7 @@ public class LinkedList {
     }
 
     public void print() {
+        System.out.println("######################################");
         if (head == null) {
             System.out.println("List is empty");
         }
@@ -103,19 +104,35 @@ public class LinkedList {
         this.lenght++;
     }
 
+    public void removeFirst() {
+        if (this.lenght == 0) {
+            System.out.println("List is empty");
+        }
+        else if (this.lenght == 1) {
+            this.head = null;
+            this.tail = null;
+            this.lenght = 0;
+        }else {
+            this.head = this.head.next;
+            this.lenght--;
+        }
+
+    }
 
 
 
-//    public static void main(String[] args) {
-//        LinkedList test = new LinkedList("Test");
-//        //test.append("Olá");
-//        //test.append("Ultimo");
-//        test.print();
-//        test.removeLast();
-//        test.print();
-//        test.makeEmpty();
-//        test.print();
-//        test.removeLast();
-//    //    System.out.println(test.getLenght());
-//    //}
+
+    public static void main(String[] args) {
+        LinkedList test = new LinkedList("Test");
+        test.append("Olá");
+        test.append("Ultimo");
+        test.print();
+        test.prepend("Primeiro");
+        test.print();
+        test.removeLast();
+        test.print();
+        test.removeFirst();
+        test.print();
+        System.out.println(test.getLenght());
+    }
 }
