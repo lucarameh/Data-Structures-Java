@@ -46,12 +46,64 @@ public class Tree {
         }
     }
 
-    public static void main(String[] args) {
-        Tree tree = new Tree();
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
-        System.out.println(tree.root.data + " " + tree.root.left.data + " " + tree.root.right.data);
+    public void preOrder() {
+        preOrder(root);
+        System.out.println("  ");
     }
 
+    private void preOrder(Node root) {
+        if(root != null) {
+            System.out.print(root.data + " ");
+            preOrder(root.left);
+            preOrder(root.right);
+        }
+    }
+
+    public void postOrder() {
+        postOrder(root);
+        System.out.println(" ");
+    }
+
+    private void postOrder(Node root) {
+        if(root != null) {
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.print(root.data + " ");
+        }
+    }
+
+    public void inOrder() {
+        inOrder(root);
+        System.out.println(" ");
+    }
+
+    private void inOrder(Node root) {
+        if(root != null) {
+            inOrder(root.left);
+            System.out.print(root.data + " ");
+            inOrder(root.right);
+        }
+
+    }
+
+    public void BFS() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()) {
+            Node currentNode = queue.remove();
+            System.out.print(currentNode.data + " ");
+            if(!currentNode.isLeaf()) {
+                queue.add(currentNode.left);
+                if(currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+            }
+        }
+        System.out.println(" ");
+    }
+
+    public void DFS() {
+        preOrder(root);
+        System.out.println("  ");
+    }
 }
