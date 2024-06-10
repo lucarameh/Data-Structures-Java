@@ -83,7 +83,6 @@ public class Tree {
             System.out.print(root.data + " ");
             inOrder(root.right);
         }
-
     }
 
     public void BFS() {
